@@ -32,15 +32,27 @@ void destruir( node *p ) {
 }
 
 void pos_order( node *p, void (*process)(int dado) ) {
-    // implementar
+    if (p){
+      pos_order(p->esq, process);
+      pos_order(p->dir, process);
+      process (p->data);
+    }
 }
 
 void pre_order( node *p, void (*process)(int dado) ) {
-    // implementar
+    if (p){
+      process (p->data);
+      pre_order(p->esq, process);
+      pre_order(p->dir, process);
+    }
 }
 
 void in_order( node *p, void (*process)(int dado) ) {
-    // implementar
+    if (p){
+      in_order(p->esq, process);
+      process (p->data);
+      in_order(p->dir, process);
+    }
 }
 
 void in_level( node *p, void (*process)(int dado) ) {
@@ -74,11 +86,12 @@ int main() {
   //printf("dado esq da raiz é: %d\n", raiz->esq->data);
 //teste: 
   /*
-5
-4 3 5 2 6
+9
+8 3 10 14 6 4 13 7 1
   */
   ///////////////////////
-	
+  
+
 	printf("Pr.:");
 	pre_order(raiz, print);
 	printf("\n");
